@@ -9,13 +9,14 @@ important_attr = {
 
 attr_data_arr = {"name", "emailid", "Message"}
 
-
+#Returns boolean based on webhooks transaction status
 def return_status(status):
     if status in status_order:
         return status_order[status]
     else:
         return False
 
+#Parses from blockonomics
 def parse_transaction_payload(payload):
     data = {}
     for attr in important_attr:
@@ -28,7 +29,7 @@ def parse_transaction_payload(payload):
             continue
     return data
 
-
+#Flattens the response
 def get_payload_attr(payload, attr, data_arr_req=False):
     if attr in payload and not data_arr_req:
         return payload[attr]

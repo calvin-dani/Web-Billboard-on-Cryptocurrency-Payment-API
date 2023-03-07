@@ -58,9 +58,6 @@ def add_comment(data):
     return db.Donation_msg.insert_one(comment_doc)
 
 
-def get_comment_largest_value():
-    result = db.Donation_msg.find().sort({"value": -1,"timestamp":1}).limit(1)[0]
-    return result
 
 class MongoJsonEncoder(JSONEncoder):
 
@@ -72,18 +69,3 @@ class MongoJsonEncoder(JSONEncoder):
         return json_util.default(obj, json_util.CANONICAL_JSON_OPTIONS)
 
 
-def create_app():
-
-    APP_DIR = os.path.abspath(os.path.dirname(__file__))
-    STATIC_FOLDER = os.path.join(APP_DIR, 'build/static')
-    TEMPLATE_FOLDER = os.path.join(APP_DIR, 'build')
-
-    app = Flask(
-        __name__,
-        static_folder=STATIC_FOLDER,
-        template_folder=TEMPLATE_FOLDER,
-    )
-    CORS(app)
-    app.json_encoder = MongoJsonEncoder
-
-    return app
