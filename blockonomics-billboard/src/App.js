@@ -30,9 +30,10 @@ function App() {
 
    
     //Ping the analytic server for the latest message of the highest donor
-    let interval = setInterval(get_message, 30000); // set the interval time in milliseconds
-
-    return () => clearInterval(interval); // clean up the interval when unmounting
+    // First we set the interval
+    // We then send a callback to clear it as the component is unmounted
+    let interval = setInterval(get_message, 30000); 
+    return () => clearInterval(interval); 
   }, []);
 
  

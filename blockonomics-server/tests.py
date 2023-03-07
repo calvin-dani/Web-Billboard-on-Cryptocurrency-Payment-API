@@ -1,6 +1,6 @@
 from crud_server import app1, set_endpoint_metadata
 import unittest as ut
-from payload_utils import get_payload_attr
+from payload_utils import get_payload_attr,parse_transaction_payload
 
 
 class TestIntegrations(ut.TestCase):
@@ -21,21 +21,26 @@ class TestIntegrations(ut.TestCase):
             "uuid", "address", "name", "emailid", "Message", "paid_satoshi",
             "timestamp"
         }
-
         ARRE_DATA_ARR = {"name", "emailid", "Message"}
-
+        
         data = {}
+        payload = self.create_payload_util(IMPORTANT_ATTR,ARRE_DATA_ARR)
+        try:
+            data = parse_transaction_payload(payload)
+        finally:
+            self.assertEqual(len(data), len(IMPORTANT_ATTR))
+
+       
+
+    def create_payload_util(self,IMPORTANT_ATTR,ARRE_DATA_ARR):
+        
         payload = {"data": {}}
         for attr in IMPORTANT_ATTR:
             if (attr not in ARRE_DATA_ARR):
                 payload[attr] = ""
             elif (attr in ARRE_DATA_ARR):
                 payload["data"][attr] = ""
-
-            data[attr] = get_payload_attr(payload, attr, attr in ARRE_DATA_ARR)
-
-        self.assertEqual(len(data), len(IMPORTANT_ATTR))
-
+        return payload
 
 if __name__ == '__main__':
     ut.main()
