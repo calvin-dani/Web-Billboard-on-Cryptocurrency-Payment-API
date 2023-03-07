@@ -8,7 +8,7 @@ function App() {
   //State Hooks to update the message and author 
   const [message, setMessage] = useState("Fetching messages.. Please wait!!")
   const [author, setAuthor] = useState("Developer")
-  
+  const [donation_min_value,setDonationValue] = useState(0)
 
   useEffect(() => {
     //Get the message of the highest donor
@@ -25,6 +25,7 @@ function App() {
         console.log(data);
         setMessage(data["message"]);
         setAuthor(data["name"]);
+        setDonationValue(data['value'])
       } ).catch(err => console.error(err)); // your GET request URL
     };
 
@@ -50,7 +51,7 @@ function App() {
           <ScaleText maxFontSize={25}>by {author}</ScaleText>
         </div>
         <div className="donation">
-          <ScaleText maxFontSize={15}>Share a message and a coffee for the cause!!</ScaleText>
+          <ScaleText maxFontSize={15}>Share ypu message for 0.00{donation_min_value} BTC Click Below!!</ScaleText>
           {/*Contains the Blockonomics payment button */}
           <a href="#" class="blockoPayBtn" data-toggle="modal" data-uid="78103a0e3ac54e3a"><img src={donateicon} className="Donate-logo" alt="donate" /></a>
         </div>
