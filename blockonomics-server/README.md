@@ -21,6 +21,6 @@ python3 -m venv venv
 
 pip install -r requirements.txt
 
-python3 analytics_server.py
+python3 crud_server.py
 
 ngrok http 5003
