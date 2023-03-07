@@ -19,7 +19,7 @@ from flask_cors import CORS
 from bson import json_util, ObjectId
 from datetime import datetime, timedelta
 
-
+# Gets MongoDB instance from global variable
 def get_db():
     """
     Configuration method to return db instance
@@ -37,7 +37,7 @@ def get_db():
 db = LocalProxy(get_db)
 
 
-def add_comment(data):
+def add_message_transaction(data):
     """
     Inserts a comment into the comments collection, with the following fields:
     - "name"

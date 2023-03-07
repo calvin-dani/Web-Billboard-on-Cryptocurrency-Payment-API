@@ -2,7 +2,7 @@ from flask import Flask, request
 import requests
 import os
 import configparser
-from db import add_comment
+from db import add_message_transaction
 from payload_utils import parse_transaction_payload, return_status
 from pymongo import MongoClient
 
@@ -28,7 +28,7 @@ def transaction_handler():
         data = parse_transaction_payload(payload)
         with app1.app_context():
             #Add the transaction detalils to mongodb
-            add_comment(data)
+            add_message_transaction(data)
     return "Got the callback",200
 
 #Returns URL to fetch transaction details

@@ -51,7 +51,7 @@ function App() {
           <ScaleText maxFontSize={25}>by {author}</ScaleText>
         </div>
         <div className="donation">
-          <ScaleText maxFontSize={15}>Share ypu message for {donation_min_value} BTC Click Below!!</ScaleText>
+          <ScaleText maxFontSize={15}>Share your message for {(donation_min_value * 0.00000001).toFixed(6)} BTC Click Below!!</ScaleText>
           {/*Contains the Blockonomics payment button */}
           <a href="#" class="blockoPayBtn" data-toggle="modal" data-uid="78103a0e3ac54e3a"><img src={donateicon} className="Donate-logo" alt="donate" /></a>
         </div>

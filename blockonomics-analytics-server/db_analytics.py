@@ -6,7 +6,7 @@ from flask.json import JSONEncoder
 from bson import json_util, ObjectId
 from datetime import datetime
 
-
+# Gets MongoDB instance from global variable
 def get_db():
     """
     Configuration method to return db instance
