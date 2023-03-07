@@ -8,36 +8,33 @@ class TestIntegrations(ut.TestCase):
     def setUp(self):
         self.app1 = app1.test_client()
 
-    #Test utility endpoint to retrieve transaction details 
+    #Test utility endpoint to retrieve transaction details
     def test_endpoints(self):
         url, obj = set_endpoint_metadata("1234")
         self.assertEqual(
             url, "https://www.blockonomics.co/api/merchant_order/1234")
 
-    #Test utility parser to retrieve transaction details 
+    #Test utility parser to retrieve transaction details
     def test_payload_creator(self):
-        
-        important_attr = {
+
+        IMPORTANT_ATTR = {
             "uuid", "address", "name", "emailid", "Message", "paid_satoshi",
             "timestamp"
         }
 
-        attr_data_arr = {"name", "emailid", "Message"}
+        ARRE_DATA_ARR = {"name", "emailid", "Message"}
 
         data = {}
         payload = {"data": {}}
-        for attr in important_attr:
-            if not (attr in attr_data_arr):
+        for attr in IMPORTANT_ATTR:
+            if (attr not in ARRE_DATA_ARR):
                 payload[attr] = ""
-            elif (attr in attr_data_arr):
+            elif (attr in ARRE_DATA_ARR):
                 payload["data"][attr] = ""
 
-            data[attr] = get_payload_attr(payload, attr, attr in attr_data_arr)
-            
-        self.assertEqual(len(data) , len(important_attr))
+            data[attr] = get_payload_attr(payload, attr, attr in ARRE_DATA_ARR)
 
-    
-
+        self.assertEqual(len(data), len(IMPORTANT_ATTR))
 
 
 if __name__ == '__main__':

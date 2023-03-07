@@ -22,11 +22,10 @@ function App() {
       })
       .then(response => response.json())
       .then(data =>{
-        console.log(data);
         setMessage(data["message"]);
         setAuthor(data["name"]);
         setDonationValue(data['value'])
-      } ).catch(err => console.error(err)); // your GET request URL
+      } ).catch(err => console.error(err)); 
     };
 
    

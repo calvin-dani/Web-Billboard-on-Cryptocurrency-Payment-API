@@ -1,27 +1,27 @@
 
 
 #Status of transaction and proceed map
-status_order = {'2': True, '1': False, '0': False}
+STATUS_ORDER = {'2': True, '1': False, '0': False}
 
-important_attr = {
+IMPORTANT_ATTR = {
     "uuid", "address", "name", "emailid", "Message", "paid_satoshi", "timestamp"
 }
 
-attr_data_arr = {"name", "emailid", "Message"}
+ARRE_DATA_ARR = {"name", "emailid", "Message"}
 
-#Returns boolean based on webhooks transaction status
+# Returns boolean based on webhooks transaction status
 def return_status(status):
-    if status in status_order:
-        return status_order[status]
+    if status in STATUS_ORDER:
+        return STATUS_ORDER[status]
     else:
         return False
 
-#Parses from blockonomics
+# Parses from blockonomics
 def parse_transaction_payload(payload):
     data = {}
-    for attr in important_attr:
+    for attr in IMPORTANT_ATTR:
         try:
-            data[attr] = get_payload_attr(payload, attr, attr in attr_data_arr)
+            data[attr] = get_payload_attr(payload, attr, attr in ARRE_DATA_ARR)
         except Exception as e:
             data[attr] = ""
             print(e)
@@ -29,7 +29,7 @@ def parse_transaction_payload(payload):
             continue
     return data
 
-#Flattens the response
+# Flattens the response with the transaction details from bloconomics
 def get_payload_attr(payload, attr, data_arr_req=False):
     if attr in payload and not data_arr_req:
         return payload[attr]
