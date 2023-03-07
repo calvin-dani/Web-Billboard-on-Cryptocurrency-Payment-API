@@ -20,7 +20,7 @@ def get_db():
 # Use LocalProxy to read the global db instance with just `db`
 db = LocalProxy(get_db)
 
-#Querying the max valued message
+# Querying the max valued message
 def get_comment_largest_value():
     result = db.Donation_msg.find().sort("value",-1).limit(1)[0]
     return json_util.dumps(result) if result else {"message":"","name":""}
