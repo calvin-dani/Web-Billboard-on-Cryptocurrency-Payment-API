@@ -15,7 +15,6 @@ function App() {
     let get_message = () => {
       fetch("https://analytics-server.onrender.com/get_message", {
         method: "GET",
-        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         }
