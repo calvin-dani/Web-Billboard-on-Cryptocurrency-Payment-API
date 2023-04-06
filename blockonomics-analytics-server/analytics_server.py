@@ -9,15 +9,15 @@ from db_analytics import get_comment_largest_value
 from pymongo import MongoClient
 from flask_cors import CORS, cross_origin
 
-ALLOWED_ORIGINS = ['localhost', '127.0.0.1']
+# ALLOWED_ORIGINS = ['localhost', '127.0.0.1']
 
 analytics_app = Flask(__name__)
-analytics_app.config['CORS_HEADERS'] = "Content-Type"
+# analytics_app.config['CORS_HEADERS'] = "Content-Type"
 
-cors = CORS(analytics_app, resources={"/*": {"origins": ALLOWED_ORIGINS}})
+# cors = CORS(analytics_app, resources={"/*": {"origins": ALLOWED_ORIGINS}})
 
-config = configparser.ConfigParser()
-config.read(os.path.abspath(os.path.join(".ini")))
+# config = configparser.ConfigParser()
+# config.read(os.path.abspath(os.path.join(".ini")))
 
 result = None
 emptyResponse = {"message":"","name":""}
