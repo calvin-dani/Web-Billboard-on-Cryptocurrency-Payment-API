@@ -40,8 +40,8 @@ def set_endpoint_metadata(uuid):
 
 if __name__ == '__main__':
     # run app in debug mode on port 5003
-    app1.config['DEBUG'] = True
+    app1.config['DEBUG'] = False
     app1.config['MONGO_URI'] = config['PROTO']['DB_URI']
     print(config['PROTO']['DB_URI'])
 
-    app1.run(debug=True, port=config['PROTO']['PORT'])
+    app1.run(debug=False, port=config['PROTO']['PORT'])
