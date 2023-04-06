@@ -33,15 +33,14 @@ def transaction_handler():
 
 #Returns URL to fetch transaction details
 def set_endpoint_metadata(uuid):
-    return config['PROTO']["GET_TRANSACTION_URL"] + uuid, {
-        "Authorization": "Bearer " + config['PROTO']["BEARER_TOKEN"]
+    return os.getenv('GET_TRANSACTION_URL') + uuid, {
+        "Authorization": "Bearer " + os.getenv('BEARER_TOKEN')
     }
 
 
 if __name__ == '__main__':
     # run app in debug mode on port 5003
     app1.config['DEBUG'] = False
-    app1.config['MONGO_URI'] = config['PROTO']['DB_URI']
-    print(config['PROTO']['DB_URI'])
+    app1.config['MONGO_URI'] = os.getenv('DB_URI')
 
-    app1.run(debug=False, port=config['PROTO']['PORT'])
+    app1.run(debug=False, port=os.getenv('PORT'))
