@@ -7,15 +7,24 @@ import os
 import configparser
 from db_analytics import get_comment_largest_value
 from pymongo import MongoClient
+from flask_cors import CORS, cross_origin
 
+ALLOWED_ORIGINS = ['localhost', '127.0.0.1','https://crypto-billboard.onrender.com']
 
 analytics_app = Flask(__name__)
+analytics_app.config['CORS_HEADERS'] = "Content-Type"
+
+cors = CORS(analytics_app, resources={"/*": {"origins": ALLOWED_ORIGINS}})
+
+config = configparser.ConfigParser()
+config.read(os.path.abspath(os.path.join(".ini")))
 
 result = None
 emptyResponse = {"message":"","name":""}
 
 # Get max valued message
 @analytics_app.route("/get_message",methods=["GET"])
+@cross_origin()
 def get_message_max_value():
     with analytics_app.app_context():
         result = get_comment_largest_value()

@@ -12,7 +12,6 @@ import os
 
 from flask import Flask, render_template
 from flask.json import JSONEncoder
-from flask_cors import CORS
 
 from bson import json_util, ObjectId
 from datetime import datetime, timedelta
