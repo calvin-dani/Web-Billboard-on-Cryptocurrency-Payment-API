@@ -37,4 +37,5 @@ if __name__ == '__main__':
     # run app in on port 5005
     analytics_app.config['DEBUG'] = False
     analytics_app.config['MONGO_URI'] = os.getenv('DB_URI')
+    print(os.getenv('DB_URI'),os.getenv('PORT_ANALYTICS'))
     analytics_app.run(debug=False, port=os.getenv('PORT_ANALYTICS'))
