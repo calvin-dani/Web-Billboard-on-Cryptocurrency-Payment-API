@@ -9,10 +9,6 @@ from pymongo import MongoClient
 #binding Flask application  
 app1 = Flask(__name__)
 
-#Fetching values from .ini files
-config = configparser.ConfigParser()
-config.read(os.path.abspath(os.path.join(".ini")))
-
 
 #Open to blockonomics as a webhook endpoint
 @app1.route("/store_transaction", methods=["GET"])
@@ -37,10 +33,7 @@ def set_endpoint_metadata(uuid):
         "Authorization": "Bearer " + os.getenv('BEARER_TOKEN')
     }
 
-
-if __name__ == '__main__':
-    # run app in debug mode on port 5003
+def create_app():
     app1.config['DEBUG'] = False
     app1.config['MONGO_URI'] = os.getenv('DB_URI')
-
-    app1.run(debug=False,host='0.0.0.0', port=os.getenv('PORT_CRUD'))
+    return app1

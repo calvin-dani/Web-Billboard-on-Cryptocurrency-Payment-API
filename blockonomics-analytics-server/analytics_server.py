@@ -17,7 +17,6 @@ analytics_app = Flask(__name__)
 def create_app():
     analytics_app.config['DEBUG'] = False
     analytics_app.config['MONGO_URI'] = os.getenv('DB_URI')
-    print(os.getenv('DB_URI'),os.getenv('PATH'),"_____________")
     return analytics_app
 
 @analytics_app.route("/get_message",methods=["GET"])
