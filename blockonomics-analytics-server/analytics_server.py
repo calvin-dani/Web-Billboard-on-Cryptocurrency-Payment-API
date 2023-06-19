@@ -33,8 +33,14 @@ def get_message_max_value():
         else:
             return emptyResponse,500
 
-if __name__ == '__main__':
-    # run app in on port 5005
+# if __name__ == '__main__':
+#     # run app in on port 5005
+#     analytics_app.config['DEBUG'] = False
+#     analytics_app.config['MONGO_URI'] = os.getenv('DB_URI')
+#     print(os.getenv('DB_URI'),os.getenv('PORT_ANALYTICS'))
+#     analytics_app.run(debug=False, port=5000)
+
+def create_app():
     analytics_app.config['DEBUG'] = False
     analytics_app.config['MONGO_URI'] = os.getenv('DB_URI')
     print(os.getenv('DB_URI'),os.getenv('PORT_ANALYTICS'))
