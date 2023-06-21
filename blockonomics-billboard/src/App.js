@@ -3,40 +3,37 @@ import donateicon from './donate.svg'
 import './App.css';
 import ScaleText from "react-scale-text";
 import { useEffect, useState } from 'react';
+import axios from "axios";
 
 function App() {
   //State Hooks to update the message and author 
   const [message, setMessage] = useState("Fetching messages.. Please wait!!")
   const [author, setAuthor] = useState("Developer")
-  const [donation_min_value,setDonationValue] = useState(0)
+  const [donation_min_value, setDonationValue] = useState(0)
 
   useEffect(() => {
     //Get the message of the highest donor
     let get_message = () => {
-      fetch("https://analytics-server.onrender.com/get_message", {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      })
-      .then(response => response.json())
-      .then(data =>{
-        setMessage(data["message"]);
-        setAuthor(data["name"]);
-        setDonationValue(data['value'])
-      } ).catch(err => console.error(err)); 
+
+      axios.get("http://azureprojectserverresource.westus3.cloudapp.azure.com/analytics/get_message", {}, { headers: { method: 'get', mode: 'cors' } })
+        .then(response => {
+          console.log(response);
+          setMessage(response.data["message"]);
+          setAuthor(response.data["name"]);
+          setDonationValue(response.data['value'])
+        })
+        .catch(err => console.error(err));
     };
 
-   
+
     //Ping the analytic server for the latest message of the highest donor
     // First we set the interval
     // We then send a callback to clear it as the component is unmounted
-    let interval = setInterval(get_message, 30000); 
-    return () => clearInterval(interval); 
+    let interval = setInterval(get_message, 30000);
+    return () => clearInterval(interval);
   }, []);
 
- 
+
   return (
     <div className="App">
       <header className="App-header">

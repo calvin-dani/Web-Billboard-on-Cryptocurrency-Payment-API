@@ -7,7 +7,7 @@ import os
 import configparser
 from db_analytics import get_comment_largest_value
 from pymongo import MongoClient
-
+from flask_cors import CORS
 
 result = None
 emptyResponse = {"message":"","name":""}
@@ -15,6 +15,7 @@ emptyResponse = {"message":"","name":""}
 analytics_app = Flask(__name__)
  
 def create_app():
+    CORS(analytics_app)
     analytics_app.config['DEBUG'] = False
     analytics_app.config['MONGO_URI'] = os.getenv('DB_URI')
     return analytics_app
