@@ -15,7 +15,7 @@ function App() {
     //Get the message of the highest donor
     let get_message = () => {
 
-      axios.get("http://azureprojectserverresource.westus3.cloudapp.azure.com/analytics/get_message", {}, { headers: { method: 'get', mode: 'cors' } })
+      axios.get("https://azureprojectserverresource.westus3.cloudapp.azure.com/analytics/get_message", {}, { headers: { method: 'get', mode: 'cors' } })
         .then(response => {
           console.log(response);
           setMessage(response.data["message"]);
